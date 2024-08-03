@@ -25,5 +25,5 @@ sequelize.sync().then(() => {
 
 // To do
 
-// Continue in video minute 1:37:30
+// Continue in video minute 1:41:30
 // Create Models 
