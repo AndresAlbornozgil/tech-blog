@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
+// User signup
 router.post('/signup', async (req, res) => {
     console.log(req.body);
     try {
@@ -28,6 +29,7 @@ router.get('/', async (req, res) => {
     }
 });
 
+// User login
 router.post('/login', async (req, res) => {
     try {
       const { username, password } = req.body;
