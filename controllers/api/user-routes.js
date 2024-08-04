@@ -1,6 +1,14 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
+// User login (renders handlebars view)
+router.get('login', (req, res) => {
+  res.render('login', {
+    layout: 'main',
+    currentPath: req.path
+  });
+})
+
 // User signup
 router.post('/signup', async (req, res) => {
     console.log(req.body);

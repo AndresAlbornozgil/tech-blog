@@ -6,6 +6,8 @@ const PORT = process.env.PORT || 3001;
 // npm packages
 const sequelize = require('./config/connection');
 const session = require('express-session');
+const hbs = require('express-handlebars');
+const path = require('path');
 
 // Calling models
 const model = require('./models');
@@ -20,8 +22,16 @@ app.use(session({
     saveUninitialized: true,
     cookie: { secure: true }
 }));
+
+// Data things
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Handlebars setup
+app.use(express.static(path.join(__dirname, 'public')));
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+app.set('views', path.join(__dirname, 'views'));
 
 // Routes
 app.use(routes);
