@@ -1,4 +1,4 @@
-// Server things
+// Server setup
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -7,11 +7,13 @@ const PORT = process.env.PORT || 3001;
 const sequelize = require('./config/connection');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
-const hbs = exphbs.create({});
 const path = require('path');
 
+// Handlebars setup
+const hbs = exphbs.create({});
+
 // Calling models
-const model = require('./models');
+const models = require('./models');
 
 // Calling the routes
 const routes = require('./controllers');
@@ -21,15 +23,17 @@ app.use(session({
     secret: 'your_secret_key_here',
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true }
+    cookie: { secure: process.env.NODE_ENV === 'production' } // Secure cookies in production
 }));
 
-// Data things
+// Data parsing middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Handlebars setup
+// Static file serving
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Handlebars setup
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'views'));
@@ -37,12 +41,15 @@ app.set('views', path.join(__dirname, 'views'));
 // Routes
 app.use(routes);
 
-// Sync with sequelize and Initialize server
-sequelize.sync({ force: true }).then(() => {
+// Sync with sequelize and start the server
+sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => {
-        console.log(`Server running on port ${PORT}`)
+        console.log(`Server running on port ${PORT}`);
     });
+}).catch(err => {
+    console.error('Failed to sync database:', err);
 });
+
 
 
 // Step by step notes
