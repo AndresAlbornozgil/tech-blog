@@ -6,7 +6,8 @@ const PORT = process.env.PORT || 3001;
 // npm packages
 const sequelize = require('./config/connection');
 const session = require('express-session');
-const hbs = require('express-handlebars');
+const exphbs = require('express-handlebars');
+const hbs = exphbs.create({});
 const path = require('path');
 
 // Calling models
