@@ -18,7 +18,7 @@ This project does not require an installation. However, you are welcome to to ei
 Deployed on [.....](.........)
 
 
-![image of Tech Blog](............)
+![image of Tech Blog](public/assets/images/image.png)
 
 ## Credits
 Andres Albornoz
