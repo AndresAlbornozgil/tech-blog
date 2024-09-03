@@ -1,3 +1,4 @@
+
 //Create a post
 document.addEventListener('DOMContentLoaded', function() {
     const createPostForm = document.getElementById('create-post-form');
