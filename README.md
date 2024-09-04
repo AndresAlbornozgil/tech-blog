@@ -15,7 +15,7 @@ A platform designed for developers to share their insights and engage with the t
 This project does not require an installation. However, you are welcome to to either clone the repository and access the project files or fork the repo.
 
 ## Usage
-Deployed on [Render](.........)
+Deployed on [Render](https://tech-blog-qmzr.onrender.com)
 
 
 ![image of Tech Blog](public/assets/images/image.png)
